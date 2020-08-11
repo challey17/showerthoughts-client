@@ -1,8 +1,14 @@
 import React, { Component } from "react";
+import { Route, Link } from "react-router-dom";
+import Context from "./Context";
 import "./App.css";
 
 export default class App extends Component {
   state = {
+    newPost: {
+      content: "",
+    },
+
     authToken: null || "a8s79dyfahsd67y87as8dtva",
     hasPosted: false || true,
     todaysPost: 6725287, // used to add a class to their post,
@@ -47,7 +53,7 @@ export default class App extends Component {
     */
   }
 
-  // like method
+  // like method, and update vote/like count
   toggleUserHasLikedPost = (id) => {
     this.setState({
       todaysPosts: this.state.todaysPosts.map((post) => {
@@ -66,52 +72,83 @@ export default class App extends Component {
     });
   };
 
+  //create post
+  createPost = (e) => {
+    e.preventDefault();
+    // check if newPost is an empty string/can't submit post with no text
+
+    if (this.state.newPost.content !== "") {
+      const newPost = {
+        id: 2346,
+        content: this.state.newPost,
+        user: "aosd67f9ahsd7fhauys",
+        votes: 0,
+        created: Date.now(),
+        currentUserHasLiked: false,
+      };
+
+      this.setState({
+        todaysPosts: [...this.state.todaysPosts, newPost],
+        newPost: {
+          content: "",
+        },
+      });
+    }
+  };
+
   render() {
     return (
-      <div>
-        <nav className="navigation">Nav</nav>
-        <header className="header">
-          <h1>Shower Thoughts</h1>
-        </header>
-        {/* create-post component*/}
-        <div className="create-post">
-          <form>
-            <label>
-              MyPost:
-              <textarea />
-            </label>
-            <input type="submit" value="submit" />
-            <input type="submit" value="cancel" />
-          </form>
-        </div>
-        {/* feed-filters component */}
-        <div className="feed-filters">
-          {/* <Link to="/fresh">fresh</Link> */}
-          <button>fresh</button>
-          <button>popular</button>
-          <button>mine</button>
-        </div>
+      <Context.Provider value={this.state}>
+        <div>
+          <nav className="navigation">Nav</nav>
+          <header className="header">
+            <h1>Shower Thoughts</h1>
+          </header>
+          {/* create-post component*/}
+          <div className="create-post">
+            <form onSubmit={(e) => this.createPost(e)}>
+              <label>
+                MyPost:
+                <textarea
+                  value={this.state.newPost.content}
+                  placeholder="new post"
+                  aria-label="new post"
+                  onChange={(e) => this.setState({ newPost: e.target.value })}
+                />
+              </label>
+              <input type="submit" value="submit" />
+              <input type="submit" value="cancel" />
+            </form>
+          </div>
+          {/* feed-filters component */}
+          <div className="feed-filters">
+            {/* <Link to="/fresh">fresh</Link> */}
+            <button>fresh</button>
+            <button>popular</button>
+            <button>mine</button>
+          </div>
 
-        {/* <Route path="/fresh" render={rprops=><Feed {...rprops} posts={this.state.posts.sort((a,b)=>b.created-a.created)} />} /> */}
-        {/* <Route path={["/","/popular"]} render={rprops=><Feed {...rprops} posts={this.state.posts.sort((a,b)=>b.votes-a.votes)} />} /> */}
-        {/* <Route path="/mine" render={rprops=><Feed {...rprops} posts={this.state.usersPosts} />} /> */}
-        <div className="feed">
-          <ul>
-            {this.state.todaysPosts.map((post) => (
-              <li>
-                <p>{post.content}</p>
-                <button
-                  onClick={(e) => this.toggleUserHasLikedPost(post.id)}
-                  className={`liked-${post.currentUserHasLiked}`}
-                >
-                  like
-                </button>
-                <p>{post.votes} likes</p>
-              </li>
-            ))}
-          </ul>
+          {/* <Route path="/fresh" render={rprops=><Feed {...rprops} posts={this.state.posts.sort((a,b)=>b.created-a.created)} />} /> */}
+          {/* <Route path={["/","/popular"]} render={rprops=><Feed {...rprops} posts={this.state.posts.sort((a,b)=>b.votes-a.votes)} />} /> */}
+          {/* <Route path="/mine" render={rprops=><Feed {...rprops} posts={this.state.usersPosts} />} /> */}
+          <div className="feed">
+            <ul>
+              {this.state.todaysPosts.map((post) => (
+                <li key={post.id}>
+                  <p>{post.content}</p>
+                  <button
+                    onClick={(e) => this.toggleUserHasLikedPost(post.id)}
+                    className={`liked-${post.currentUserHasLiked}`}
+                  >
+                    like
+                  </button>
+                  <p>{post.votes} likes</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      </Context.Provider>
     );
   }
 }
