@@ -5,10 +5,13 @@ import CreatePost from "./CreatePost/CreatePost";
 import Feed from "./Feed/Feed";
 import FeedFilter from "./FeedFilter/FeedFilter";
 import Welcome from "./Welcome/Welcome";
-import Post from "./Post/Post";
+import { v4 as uuidv4 } from "uuid";
 
 import Context from "./Context";
 import "./App.css";
+
+// TODO import uuid library to generate authTokens
+// add Home link in NAV, WELCOME component only shows there on "/" path
 
 export default class App extends Component {
   state = {
@@ -19,10 +22,10 @@ export default class App extends Component {
     authToken: null || "a8s79dyfahsd67y87as8dtva",
     hasPosted: false || true,
     todaysPost: 6725287, // used to add a class to their post,
-    likedPosts: [2345, 779, 20927],
+    likedPosts: [1, 2],
     todaysPosts: [
       {
-        id: 2345,
+        id: 1,
         content: "The object of golf is to play the least amount of golf.",
         user: "a8s79dyfahsd67y87as8dtva",
         votes: 25,
@@ -30,7 +33,7 @@ export default class App extends Component {
         currentUserHasLiked: false,
       },
       {
-        id: 2343,
+        id: 2,
         content:
           "Peer pressure as an adult is seeing your neighbor mow their lawn.",
         user: "aosd67f9ahsd7fhauys",
@@ -39,6 +42,7 @@ export default class App extends Component {
         currentUserHasLiked: true,
       },
     ],
+    usersPosts: [],
 
     //callback function for createPost
     setCreatePost: (e) => this.setState({ newPost: e.target.value }),
@@ -102,6 +106,11 @@ export default class App extends Component {
       get that days posts from the db
       fetch(`${config.API_ENDPOINT}/usersposts`,{header:{Authorization:`Bearer ${authToken}`}}).then(res=>res.json()).then(usersPosts=>this.setState({usersPosts}))
     */
+    // TODO - check to see if localStorage.getItem('authToken')
+    // if yes, put it in state
+    // if no use uuid.v2.generate() look at the docs
+    // put that in state, and localStorage.setItem('authToken',authToken)
+    // this.setState({usersPosts: this.state.posts.filter(p=>p.user===authToken)})
   }
   //static contextType = Context;
   render() {
@@ -110,25 +119,18 @@ export default class App extends Component {
         <div>
           <nav className="navigation">Nav</nav>
           <Header />
+          <Route exact path="/" component={Welcome} />
           {/* create-post component*/}
           <CreatePost />
           {/* feed-filters component */}
-          <div className="feed-filters">
-            <Link to="/fresh">fresh</Link>
-            <Link to="/popular">fresh</Link>
-            <Link to="/mine">fresh</Link>
-
-            <button>fresh</button>
-            <button>popular</button>
-            <button>mine</button>
-          </div>
+          <FeedFilter />
 
           <Route
             path="/fresh"
             render={(rprops) => (
               <Feed
                 {...rprops}
-                posts={this.context.todaysPosts.sort(
+                posts={this.state.todaysPosts.sort(
                   (a, b) => b.created - a.created
                 )}
               />
@@ -137,23 +139,21 @@ export default class App extends Component {
           {/* What is going on here? do i need to use the post prop in feed component? 
           getting errors */}
           <Route
+            exact
             path={["/", "/popular"]}
             render={(rprops) => (
               <Feed
                 {...rprops}
-                posts={this.context.todaysPosts.sort(
-                  (a, b) => b.votes - a.votes
-                )}
+                posts={this.state.todaysPosts.sort((a, b) => b.votes - a.votes)}
               />
             )}
           />
           <Route
             path="/mine"
             render={(rprops) => (
-              <Feed {...rprops} posts={this.context.usersPosts} />
+              <Feed {...rprops} posts={this.state.usersPosts} />
             )}
           />
-          <Feed />
         </div>
       </Context.Provider>
     );

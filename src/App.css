@@ -32,3 +32,7 @@ li {
 .liked-true {
   background-color: blue;
 }
+
+.feed-filters a {
+  margin: 10px;
+}
