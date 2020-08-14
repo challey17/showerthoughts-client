@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Header from "./Header/Header";
 import CreatePost from "./CreatePost/CreatePost";
 import Feed from "./Feed/Feed";
@@ -10,17 +10,15 @@ import { v4 as uuidv4 } from "uuid";
 import Context from "./Context";
 import "./App.css";
 
-// TODO import uuid library to generate authTokens
-// add Home link in NAV, WELCOME component only shows there on "/" path
-
+//Font awesome for icons, lightbulb for likes
 export default class App extends Component {
   state = {
     newPost: {
       content: "",
     },
 
-    authToken: null || "a8s79dyfahsd67y87as8dtva",
-    hasPosted: false || true,
+    authToken: null,
+    hasPosted: false,
     todaysPost: 6725287, // used to add a class to their post,
     likedPosts: [1, 2],
     todaysPosts: [
@@ -29,7 +27,7 @@ export default class App extends Component {
         content: "The object of golf is to play the least amount of golf.",
         user: "a8s79dyfahsd67y87as8dtva",
         votes: 25,
-        created: "2020-08-04TZ13:40:00",
+        created: "2020-08-04T13:40:00.384Z",
         currentUserHasLiked: false,
       },
       {
@@ -38,7 +36,7 @@ export default class App extends Component {
           "Peer pressure as an adult is seeing your neighbor mow their lawn.",
         user: "aosd67f9ahsd7fhauys",
         votes: 5,
-        created: "2020-08-04TZ13:05:00",
+        created: "2020-08-04T13:05:00.384Z",
         currentUserHasLiked: true,
       },
     ],
@@ -51,18 +49,22 @@ export default class App extends Component {
       e.preventDefault();
       // check if newPost is an empty string/can't submit post with no text
 
-      if (this.state.newPost.content !== "") {
+      if (this.state.newPost.content !== "" && this.state.hasPosted !== true) {
         const newPost = {
-          id: 2346,
+          id: 2346, // when BE is hooked up, the db tells us the id
           content: this.state.newPost,
-          user: "aosd67f9ahsd7fhauys",
+          user: this.state.authToken,
           votes: 0,
-          created: Date.now(),
+          created: new Date().toISOString(), // when BE is hooked up, the db tells us the created
           currentUserHasLiked: false,
         };
 
+        // fetch call to the be to save the post
+
         this.setState({
           todaysPosts: [...this.state.todaysPosts, newPost],
+          usersPosts: [...this.state.usersPosts, newPost],
+          hasPosted: true,
           newPost: {
             content: "",
           },
@@ -101,19 +103,30 @@ export default class App extends Component {
   componentDidMount() {
     /*
       fetch(`${config.API_ENDPOINT}/todaysposts`).then(res=>res.json()).then(posts=>this.setState({posts}))
+      OR, rather than below, check if any of todays posts have the users AuthToken
       that endpoint just returns todaysposts
       it's not that the posts are deleted every day, it's just that you only ever
       get that days posts from the db
-      fetch(`${config.API_ENDPOINT}/usersposts`,{header:{Authorization:`Bearer ${authToken}`}}).then(res=>res.json()).then(usersPosts=>this.setState({usersPosts}))
+      
     */
     // TODO - check to see if localStorage.getItem('authToken')
     // if yes, put it in state
     // if no use uuid.v2.generate() look at the docs
     // put that in state, and localStorage.setItem('authToken',authToken)
     // this.setState({usersPosts: this.state.posts.filter(p=>p.user===authToken)})
+    if (localStorage.getItem("authToken") !== null) {
+      this.setState({ authToken: localStorage.getItem("authToken") }, () => {
+        //fetch(`${config.API_ENDPOINT}/usersposts`,{header:{Authorization:`Bearer ${this.state.authToken}`}}).then(res=>res.json()).then(usersPosts=>this.setState({usersPosts}))
+        // check to see if any of those posts have today's date on them
+      });
+    } else {
+      this.setState({ authToken: localStorage.setItem("authToken", uuidv4()) });
+    }
   }
-  //static contextType = Context;
+
   render() {
+    console.log(localStorage.getItem("authToken"));
+
     return (
       <Context.Provider value={this.state}>
         <div>
@@ -121,7 +134,7 @@ export default class App extends Component {
           <Header />
           <Route exact path="/" component={Welcome} />
           {/* create-post component*/}
-          <CreatePost />
+          {this.state.hasPosted !== true && <CreatePost />}
           {/* feed-filters component */}
           <FeedFilter />
 
@@ -130,8 +143,8 @@ export default class App extends Component {
             render={(rprops) => (
               <Feed
                 {...rprops}
-                posts={this.state.todaysPosts.sort(
-                  (a, b) => b.created - a.created
+                posts={this.state.todaysPosts.sort((a, b) =>
+                  b.created.localeCompare(a.created)
                 )}
               />
             )}

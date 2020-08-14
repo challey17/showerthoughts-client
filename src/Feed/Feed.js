@@ -11,8 +11,8 @@ export default class Feed extends Component {
     return (
       <div className="feed">
         <ul>
-          {this.props.posts.map((post) => (
-            <Post post={post} />
+          {this.props.posts.map((post, i) => (
+            <Post post={post} key={i} />
           ))}
         </ul>
       </div>
