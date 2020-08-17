@@ -9,7 +9,6 @@ export default class CreatePost extends Component {
       <div className="create-post">
         <form onSubmit={(e) => this.context.createPost(e)}>
           <label>
-            MyPost:
             <textarea
               value={this.context.newPost.content}
               placeholder="new post"
@@ -17,8 +16,10 @@ export default class CreatePost extends Component {
               onChange={(e) => this.context.setCreatePost(e)}
             />
           </label>
-          <input type="submit" value="submit" />
-          <input type="submit" value="cancel" />
+          <div className="input-container">
+            <input type="submit" value="POST" />
+            <input type="submit" value="cancel" />
+          </div>
         </form>
       </div>
     );

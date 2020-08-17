@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import Header from "./Header/Header";
 import CreatePost from "./CreatePost/CreatePost";
 import Feed from "./Feed/Feed";
@@ -59,7 +59,7 @@ export default class App extends Component {
           currentUserHasLiked: false,
         };
 
-        // fetch call to the be to save the post
+        // fetch call to the BACK END to save the post
 
         this.setState({
           todaysPosts: [...this.state.todaysPosts, newPost],
@@ -129,8 +129,10 @@ export default class App extends Component {
 
     return (
       <Context.Provider value={this.state}>
-        <div>
-          <nav className="navigation">Nav</nav>
+        <div className="app">
+          <nav className="navigation">
+            <Link to="/"> ShowerThoughts</Link>
+          </nav>
           <Header />
           <Route exact path="/" component={Welcome} />
           {/* create-post component*/}
@@ -149,8 +151,7 @@ export default class App extends Component {
               />
             )}
           />
-          {/* What is going on here? do i need to use the post prop in feed component? 
-          getting errors */}
+
           <Route
             exact
             path={["/", "/popular"]}

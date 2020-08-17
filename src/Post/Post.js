@@ -13,7 +13,7 @@ export default class Post extends Component {
           onClick={(e) => this.context.toggleUserHasLikedPost(post.id)}
           className={`liked-${post.currentUserHasLiked}`}
         >
-          like
+          <i className="far fa-lightbulb"></i>
         </button>
         <p>{post.votes} likes</p>
       </li>

@@ -5,9 +5,15 @@ export default class FeedFilter extends Component {
   render() {
     return (
       <div className="feed-filters">
-        <Link to="/popular">popular</Link>
-        <Link to="/fresh">fresh</Link>
-        <Link to="/mine">mine</Link>
+        <Link className="filter" to="/popular">
+          popular
+        </Link>
+        <Link className="filter" to="/fresh">
+          fresh
+        </Link>
+        <Link className="filter" to="/mine">
+          mine
+        </Link>
       </div>
     );
   }
