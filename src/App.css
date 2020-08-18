@@ -13,9 +13,25 @@
 }
 
 nav {
+  display: flex;
   min-height: 40px;
-  background-color: beige;
+
   text-align: left;
+  align-items: center;
+}
+
+.shower-icon {
+  margin: 4px;
+  padding: 4px;
+  color: black;
+  border: 1px solid;
+  border-radius: 8px;
+}
+
+.shower-thoughts-link {
+  text-decoration: none;
+  font-size: 28px;
+  color: black;
 }
 
 .background-image {
@@ -25,21 +41,24 @@ nav {
 
 li {
   list-style: none;
-  border: black;
-
-  padding: 5% 0;
+  border: 1px solid;
+  border-radius: 5px;
+  width: 80%;
+  margin: 16px;
 }
 
 .liked-false {
+  color: beige;
   background-color: darkgray;
 }
 
 .liked-true {
-  background-color: blue;
+  color: yellow;
+  background-color: white;
 }
 
 button {
-  margin: 10px;
+  margin: 5px;
   padding: 5px;
   text-decoration: none;
   border: 1px solid;
@@ -76,6 +95,7 @@ form input {
 
 textarea {
   border: 0.5px solid;
+  border-radius: 5px;
   min-height: 80px;
   min-width: 300px;
 }

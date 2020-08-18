@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import Context from "../Context";
 
 export default class Post extends Component {
@@ -13,7 +14,7 @@ export default class Post extends Component {
           onClick={(e) => this.context.toggleUserHasLikedPost(post.id)}
           className={`liked-${post.currentUserHasLiked}`}
         >
-          <i className="far fa-lightbulb"></i>
+          <FontAwesomeIcon icon={faLightbulb} size="2x" />
         </button>
         <p>{post.votes} likes</p>
       </li>

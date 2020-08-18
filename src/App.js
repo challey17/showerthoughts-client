@@ -6,6 +6,8 @@ import Feed from "./Feed/Feed";
 import FeedFilter from "./FeedFilter/FeedFilter";
 import Welcome from "./Welcome/Welcome";
 import { v4 as uuidv4 } from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShower } from "@fortawesome/free-solid-svg-icons";
 
 import Context from "./Context";
 import "./App.css";
@@ -131,7 +133,16 @@ export default class App extends Component {
       <Context.Provider value={this.state}>
         <div className="app">
           <nav className="navigation">
-            <Link to="/"> ShowerThoughts</Link>
+            <FontAwesomeIcon
+              icon={faShower}
+              size="2x"
+              className="shower-icon"
+            />
+
+            <Link to="/" className="shower-thoughts-link">
+              {" "}
+              Shower Thoughts
+            </Link>
           </nav>
           <Header />
           <Route exact path="/" component={Welcome} />
