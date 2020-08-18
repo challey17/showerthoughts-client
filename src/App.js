@@ -20,17 +20,19 @@ export default class App extends Component {
     },
 
     authToken: null,
+    // if(this.state.hasPosted)
+    // if(this.state.posts.filter(p=>user_id===this.state.user.id).length)
     hasPosted: false,
-    todaysPost: 6725287, // used to add a class to their post,
+    todaysPost: 6725287, // used to add a class to their post, no longer a need for this, as usersPosts has all their posts
     likedPosts: [1, 2],
     todaysPosts: [
       {
         id: 1,
         content: "The object of golf is to play the least amount of golf.",
         user: "a8s79dyfahsd67y87as8dtva",
-        votes: 25,
+        votes: 25, // change to voters which is the user id
         created: "2020-08-04T13:40:00.384Z",
-        currentUserHasLiked: false,
+        currentUserHasLiked: false, // delete this, user voters instead
       },
       {
         id: 2,

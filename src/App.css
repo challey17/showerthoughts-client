@@ -13,6 +13,8 @@
 }
 
 nav {
+  border-bottom: 1px solid;
+  padding-bottom: 5px;
   display: flex;
   min-height: 40px;
 
@@ -35,8 +37,16 @@ nav {
 }
 
 .background-image {
-  max-height: 20%;
-  width: 100%;
+  max-height: 30vh;
+  width: 30vh;
+}
+
+header {
+  margin: 70px;
+}
+
+ul {
+  padding-left: 0;
 }
 
 li {
@@ -44,7 +54,14 @@ li {
   border: 1px solid;
   border-radius: 5px;
   width: 80%;
-  margin: 16px;
+  margin: 16px auto;
+  /* 
+    margin: 10px - 10px all around, top, right, bottom, left
+    margin: 10px 20px - 10px top&bottom, 20px left&right
+    margin: 10px 20px 15px - 10px top, 20px left&right, 15px bottom
+    margin: 10px 20px 15px 25px - 10px top, 20px right, 15px bottom, 25px left
+    margin: 0 auto; - 0 t&b, auto l&r - this only works if the elemtnt is block/flex and has a width < 100%
+  */
 }
 
 .liked-false {

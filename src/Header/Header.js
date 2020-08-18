@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const background = require("../ShwerThoughtsBG.png");
+const background = require("../lightbulbHead.png");
 
 export default class Header extends Component {
   render() {
