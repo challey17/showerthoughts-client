@@ -28,7 +28,8 @@ export default class App extends Component {
     todaysPosts: [
       {
         id: 1,
-        content: "The object of golf is to play the least amount of golf.",
+        content:
+          "Maybe plants are really farming us, giving us oxygen until we eventually expire and turn into mulch which they can consume.",
         user: "a8s79dyfahsd67y87as8dtva",
         votes: 25, // change to voters which is the user id
         created: "2020-08-04T13:40:00.384Z",
@@ -42,6 +43,24 @@ export default class App extends Component {
         votes: 5,
         created: "2020-08-04T13:05:00.384Z",
         currentUserHasLiked: true,
+      },
+      {
+        id: 3,
+        content:
+          "If my calculator had a history, it would be more embarrassing than my browser history.",
+        user: "aosd698798usldkfj7f9ahsd7fhauys",
+        votes: 54,
+        created: "2020-08-04T13:02:00.384Z",
+        currentUserHasLiked: true,
+      },
+      {
+        id: 2,
+        content:
+          "As a kid my parents taught me to not believe everything I see on TV, now I have to teach them to not believe everything they see on Facebook.",
+        user: "aosd67f9dwdsdahsd7fhauys",
+        votes: 27,
+        created: "2020-08-04T13:07:00.384Z",
+        currentUserHasLiked: false,
       },
     ],
     usersPosts: [],
