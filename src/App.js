@@ -54,7 +54,7 @@ export default class App extends Component {
         currentUserHasLiked: true,
       },
       {
-        id: 2,
+        id: 4,
         content:
           "As a kid my parents taught me to not believe everything I see on TV, now I have to teach them to not believe everything they see on Facebook.",
         user: "aosd67f9dwdsdahsd7fhauys",
