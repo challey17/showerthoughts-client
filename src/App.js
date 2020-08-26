@@ -125,6 +125,14 @@ export default class App extends Component {
 
   componentDidMount() {
     /*
+    * check localStorage for user id
+    * - if there, get all the users posts via fetch /api/posts/:user_id
+    * - if not, send a post fetch to /api/users
+    * -- store the new id in localStorage
+    * 
+    * fetch call to get all of todays posts
+    * /
+    /*
       fetch(`${config.API_ENDPOINT}/todaysposts`).then(res=>res.json()).then(posts=>this.setState({posts}))
       OR, rather than below, check if any of todays posts have the users AuthToken
       that endpoint just returns todaysposts
