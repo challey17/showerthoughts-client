@@ -9,6 +9,8 @@ import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShower } from "@fortawesome/free-solid-svg-icons";
 
+import { API_ENDPOINT } from "./config";
+
 import Context from "./Context";
 import "./App.css";
 
@@ -133,7 +135,7 @@ export default class App extends Component {
     * fetch call to get all of todays posts
     * /
     /*
-      fetch(`${config.API_ENDPOINT}/todaysposts`).then(res=>res.json()).then(posts=>this.setState({posts}))
+      fetch(`${API_ENDPOINT}/todaysposts`).then(res=>res.json()).then(posts=>this.setState({posts}))
       OR, rather than below, check if any of todays posts have the users AuthToken
       that endpoint just returns todaysposts
       it's not that the posts are deleted every day, it's just that you only ever
