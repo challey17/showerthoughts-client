@@ -10,15 +10,14 @@ export default class CreatePost extends Component {
         <form onSubmit={(e) => this.context.createPost(e)}>
           <label>
             <textarea
-              value={this.context.newPost.content}
               placeholder="new post"
               aria-label="new post"
-              onChange={(e) => this.context.setCreatePost(e)}
+              name="content"
             />
           </label>
           <div className="input-container">
             <input type="submit" value="POST" />
-            <input type="submit" value="cancel" />
+            <input type="reset" value="cancel" />
           </div>
         </form>
       </div>
