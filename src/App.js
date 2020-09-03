@@ -22,7 +22,6 @@ export default class App extends Component {
     createPost: (e) => {
       e.preventDefault();
       // check if newPost is an empty string/can't submit post with no text
-
       if (e.target.content.value !== "" && !this.state.hasPosted) {
         const newPost = {
           user_id: this.state.userId,
@@ -48,14 +47,19 @@ export default class App extends Component {
 
     toggleUserHasLikedPost: (id) => {
       this.setState({
+        // grab post from state based on post id
         todaysPosts: this.state.todaysPosts.map((post) => {
           if (id === post.id) {
+            //if voters array includes userId, filter out userId from voters array
+            //i.e "unlike" the post
             post.voters = post.voters.split(",").includes(this.state.userId)
               ? post.voters
                   .split(",")
                   .filter((v) => v !== this.state.userId)
                   .join(",")
-              : post.voters.split(",").push(this.state.userId).join(",");
+              : // if voters array does not include userId, push userId into voters array
+                //i.e add "like"
+                post.voters.split(",").concat(this.state.userId).join(",");
 
             // fetch to patch that post now that it's modified
 

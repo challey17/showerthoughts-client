@@ -5,8 +5,11 @@ import Context from "../Context";
 
 export default class Post extends Component {
   static contextType = Context;
+
   render() {
     const { post } = this.props;
+    const votes = post.voters.split("").map(Number).length;
+    //
     return (
       <li key={post.id}>
         <p>{post.content}</p>
@@ -16,7 +19,7 @@ export default class Post extends Component {
         >
           <FontAwesomeIcon icon={faLightbulb} size="2x" />
         </button>
-        <p>{post.votes} likes</p>
+        <p>{votes} likes</p>
       </li>
     );
   }
