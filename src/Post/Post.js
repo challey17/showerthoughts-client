@@ -8,14 +8,17 @@ export default class Post extends Component {
 
   render() {
     const { post } = this.props;
-    const votes = post.voters.split("").map(Number).length;
+    const votes = post.voters.split(",").filter(Boolean).map(Number).length;
     //
     return (
       <li key={post.id}>
         <p>{post.content}</p>
         <button
           onClick={(e) => this.context.toggleUserHasLikedPost(post.id)}
-          className={`liked-${post.currentUserHasLiked}`}
+          className={`liked-${post.voters
+            .split(",")
+            .map(Number)
+            .includes(this.context.userId)}`}
         >
           <FontAwesomeIcon icon={faLightbulb} size="2x" />
         </button>

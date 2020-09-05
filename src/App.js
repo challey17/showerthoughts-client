@@ -52,21 +52,36 @@ export default class App extends Component {
           if (id === post.id) {
             //if voters array includes userId, filter out userId from voters array
             //i.e "unlike" the post
-            post.voters = post.voters.split(",").includes(this.state.userId)
+            post.voters = post.voters
+              .split(",")
+              .map(Number)
+              .includes(this.state.userId)
               ? post.voters
                   .split(",")
+                  .map(Number)
                   .filter((v) => v !== this.state.userId)
                   .join(",")
               : // if voters array does not include userId, push userId into voters array
                 //i.e add "like"
-                post.voters.split(",").concat(this.state.userId).join(",");
+                //split turn it into array, filter romoves the 0 bc it was an mpty string
+                //map converts to numbers, concat adds the userId to array
+                // join turns number array back to string
+                post.voters
+                  .split(",")
+                  .filter(Boolean)
+                  .map(Number)
+                  .concat(this.state.userId)
+                  .join(",");
 
             // fetch to patch that post now that it's modified
 
             fetch(`${API_ENDPOINT}/posts/${post.id}`, {
-              method: "patch",
+              method: "put",
+              headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ voters: post.voters }),
-            });
+            })
+              .then((res) => true)
+              .catch((err) => console.error(err));
           }
           return post;
         }),
