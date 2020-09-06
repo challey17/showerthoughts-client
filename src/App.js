@@ -173,7 +173,9 @@ export default class App extends Component {
             render={(rprops) => (
               <Feed
                 {...rprops}
-                posts={this.state.todaysPosts.sort((a, b) => b.votes - a.votes)}
+                posts={this.state.todaysPosts.sort(
+                  (a, b) => b.voters.length - a.voters.length
+                )}
               />
             )}
           />
