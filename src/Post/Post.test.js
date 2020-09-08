@@ -5,10 +5,10 @@ import Post from "./Post";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
-
+  const post = { voters: "2,4,5" };
   ReactDOM.render(
     <BrowserRouter>
-      <Post />
+      <Post post={post} />
     </BrowserRouter>,
     div
   );

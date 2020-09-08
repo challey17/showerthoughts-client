@@ -9,7 +9,9 @@ export default class Post extends Component {
   render() {
     const { post } = this.props;
     const votes = post.voters.split(",").filter(Boolean).map(Number).length;
-    //
+    //default value for userId if it is undefined
+    const { userId = 0 } = this.context;
+
     return (
       <li key={post.id}>
         <p>{post.content}</p>
@@ -18,7 +20,7 @@ export default class Post extends Component {
           className={`liked-${post.voters
             .split(",")
             .map(Number)
-            .includes(this.context.userId)}`}
+            .includes(userId)}`}
         >
           <FontAwesomeIcon icon={faLightbulb} size="2x" />
         </button>
