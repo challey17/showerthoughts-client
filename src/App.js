@@ -150,9 +150,7 @@ export default class App extends Component {
           </nav>
           <Header />
           <Route exact path="/" component={Welcome} />
-          {/* create-post component*/}
           {!this.state.hasPosted && <CreatePost />}
-          {/* feed-filters component */}
           <FeedFilter />
 
           <Route
