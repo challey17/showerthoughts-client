@@ -149,7 +149,11 @@ export default class App extends Component {
             </Link>
           </nav>
           <Header />
-          <Route exact path="/" component={Welcome} />
+          <Route
+            exact
+            path="/"
+            component={this.state.usersPosts.length < 1 && Welcome}
+          />
           {!this.state.hasPosted && <CreatePost />}
           <FeedFilter />
 

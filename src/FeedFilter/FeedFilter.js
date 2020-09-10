@@ -12,7 +12,7 @@ export default class FeedFilter extends Component {
           fresh
         </Link>
         <Link className="filter" to="/mine">
-          mine
+          my posts
         </Link>
       </div>
     );

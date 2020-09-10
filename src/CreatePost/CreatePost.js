@@ -7,17 +7,19 @@ export default class CreatePost extends Component {
   render() {
     return (
       <div className="create-post">
+        <p>Share your genius</p>
         <form onSubmit={(e) => this.context.createPost(e)}>
           <label>
             <textarea
-              placeholder="new post"
+              placeholder="Share your thoughts once a day, all community posts will be reset at
+              12AM EST"
               aria-label="new post"
               name="content"
             />
           </label>
           <div className="input-container">
             <input type="submit" value="POST" />
-            <input type="reset" value="cancel" />
+            <input type="reset" value="RESET" />
           </div>
         </form>
       </div>
