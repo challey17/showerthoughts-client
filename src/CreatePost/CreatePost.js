@@ -11,7 +11,7 @@ export default class CreatePost extends Component {
         <form onSubmit={(e) => this.context.createPost(e)}>
           <label>
             <textarea
-              placeholder="Share your thoughts once a day, all community posts will be reset at
+              placeholder="Share your thoughts once a day, community posts expire at
               12AM EST"
               aria-label="new post"
               name="content"

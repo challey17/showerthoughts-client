@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import CreatePost from "./CreatePost/CreatePost";
 import Feed from "./Feed/Feed";
 import FeedFilter from "./FeedFilter/FeedFilter";
-import Welcome from "./Welcome/Welcome";
+import LandingPage from "./LandingPage/LandingPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShower } from "@fortawesome/free-solid-svg-icons";
 
@@ -152,7 +152,7 @@ export default class App extends Component {
           <Route
             exact
             path="/"
-            component={this.state.usersPosts.length < 1 && Welcome}
+            component={this.state.usersPosts.length < 1 && LandingPage}
           />
           {!this.state.hasPosted && <CreatePost />}
           <FeedFilter />
@@ -196,7 +196,7 @@ export default class App extends Component {
 //COMPONENTS
 //APP
 //-HEADER
-//-Welcome (no authToken)
+//-LandingPage (no authToken)
 //-CREATEPOST
 //-FEED-FILTER
 //-FEED

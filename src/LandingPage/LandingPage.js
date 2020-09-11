@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-export default class Welcome extends Component {
+export default class LandingPage extends Component {
   render() {
     return (
-      <div className="welcome">
+      <div className="LandingPage">
         <h2>Shower Thoughts</h2>
         <p>
           Share your mental ramblings, philosphize about the universe, be

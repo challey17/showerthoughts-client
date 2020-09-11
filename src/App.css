@@ -1,11 +1,14 @@
 * {
   box-sizing: border-box;
 }
-
+body {
+  margin: 0;
+}
 .app {
   margin: 0;
+  background-color: #ffffff;
+  font-family: "Roboto", sans-serif;
 
-  font-family: "Open Sans", sans-serif;
   font-size: 20px;
   color: black;
   text-align: center;
@@ -17,7 +20,7 @@ nav {
   padding-bottom: 5px;
   display: flex;
   min-height: 40px;
-
+  background-color: #1b262c;
   text-align: left;
   align-items: center;
 }
@@ -25,15 +28,17 @@ nav {
 .shower-icon {
   margin: 4px;
   padding: 4px;
-  color: black;
-  border: 1px solid;
+  color: #f0ece3;
+  border: 2px solid;
   border-radius: 8px;
 }
 
 .shower-thoughts-link {
   text-decoration: none;
-  font-size: 28px;
-  color: black;
+  font-size: 24px;
+  font-family: "Roboto", sans-serif;
+  font: "Roboto", medium 500;
+  color: #f0ece3;
 }
 
 .background-image {
@@ -45,10 +50,19 @@ header {
   margin: 70px;
 }
 
-.welcome {
+.LandingPage {
+  margin: 40px;
+  padding: 12px;
   font-size: 14px;
+  background-color: #1b262c;
+  color: #f0ece3;
+  border: 2px solid;
+  border-radius: 8px;
 }
-
+.feed .feed-info {
+  padding: 10px;
+  font-size: 16px;
+}
 ul {
   padding-left: 0;
 }
@@ -59,6 +73,7 @@ li {
   border-radius: 5px;
   width: 80%;
   margin: 16px auto;
+  background-color: #f3e5dd;
 
   /* 
     margin: 10px - 10px all around, top, right, bottom, left
@@ -85,7 +100,9 @@ button {
   text-decoration: none;
   border: 1px solid;
   border-radius: 10px;
-  color: black;
+
+  background-color: #204051;
+  color: #d4b5b0;
 }
 
 .create-post {
@@ -114,6 +131,8 @@ form input {
   border: 1px solid;
   border-radius: 10px;
   color: black;
+  background-color: #1b262c;
+  color: #f0ece3;
 }
 
 textarea {
@@ -135,5 +154,6 @@ textarea {
   text-decoration: none;
   border: 1px solid;
   border-radius: 10px;
-  color: black;
+  background-color: #1b262c;
+  color: #f0ece3;
 }
