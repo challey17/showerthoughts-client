@@ -7,9 +7,9 @@ export default class CreatePost extends Component {
   render() {
     return (
       <div className="create-post">
-        <p>Share your genius</p>
+        <p>Share your thoughts</p>
         <form onSubmit={(e) => this.context.createPost(e)}>
-          <label>
+          <label aria-label="new post">
             <textarea
               placeholder="Share your thoughts once a day, community posts expire at
               12AM EST"

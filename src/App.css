@@ -74,14 +74,6 @@ li {
   width: 80%;
   margin: 16px auto;
   background-color: #f3e5dd;
-
-  /* 
-    margin: 10px - 10px all around, top, right, bottom, left
-    margin: 10px 20px - 10px top&bottom, 20px left&right
-    margin: 10px 20px 15px - 10px top, 20px left&right, 15px bottom
-    margin: 10px 20px 15px 25px - 10px top, 20px right, 15px bottom, 25px left
-    margin: 0 auto; - 0 t&b, auto l&r - this only works if the elemtnt is block/flex and has a width < 100%
-  */
 }
 
 .liked-false {
