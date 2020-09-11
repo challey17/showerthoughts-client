@@ -114,7 +114,6 @@ export default class App extends Component {
             },
             this.getPosts()
           );
-          console.log(user.id);
         });
     }
   }
@@ -123,7 +122,6 @@ export default class App extends Component {
     fetch(`${API_ENDPOINT}/posts`)
       .then((response) => response.json())
       .then((posts) => {
-        console.log("posts", posts);
         this.setState({
           todaysPosts: posts,
           hasPosted: posts.filter((p) => p.user_id === this.state.userId)
