@@ -6,7 +6,7 @@ export default class LandingPage extends Component {
       <div className="LandingPage">
         <h2>Shower Thoughts</h2>
         <p>
-          Share your mental ramblings, philosphize about the universe, be
+          Share your mental ramblings, philosophize about the universe, be
           inspired, scream into the void with anonymity! Welcome, enjoy!
         </p>
         <h3>Look Ma, no log-in!</h3>
